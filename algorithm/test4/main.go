@@ -1,7 +1,26 @@
 package main
 
-func main() {
+import "github.com/gin-gonic/gin"
 
+func main() {
+	r := gin.New()
+	t := r.Group("test")
+	t.GET("/t1" , func(context *gin.Context) {
+		context.JSON(200 , gin.H{
+			"message" : "ok",
+		})
+	})
+	t.GET("t2" , func(context *gin.Context) {
+		context.JSON(200 , gin.H{
+			"message" : "ok1",
+		})
+	})
+	t.GET("" , func(context *gin.Context) {
+		context.JSON(200 , gin.H{
+			"message" : "ok3",
+		})
+	})
+	r.Run(":8888")
 }
 
 type TreeNode struct {
